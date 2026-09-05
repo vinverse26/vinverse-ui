@@ -1,7 +1,7 @@
 {
-  "name": "vinverse-ui",
+  "name": "vinverse-frontend",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "axios": "^1.7.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
