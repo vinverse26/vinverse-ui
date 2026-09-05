@@ -1,5 +1,6 @@
 import {
   seedUser, seedProjects, seedProjectStates, seedDocuments, seedMembers, seedHistory,
+  seedAllUsers, seedInvitations, seedComponents, seedPerspectives, seedProposals, seedOpportunities,
 } from './mockData'
 
 // Mutable in-memory store, seeded on load. Resets on page refresh — that's fine
@@ -10,7 +11,12 @@ let projectStates = { ...seedProjectStates }
 let documents = JSON.parse(JSON.stringify(seedDocuments))
 let members = JSON.parse(JSON.stringify(seedMembers))
 let history = JSON.parse(JSON.stringify(seedHistory))
-let invitations = {}
+let invitations = [...seedInvitations]
+let allUsers = [...seedAllUsers]
+let components = JSON.parse(JSON.stringify(seedComponents))
+let perspectives = JSON.parse(JSON.stringify(seedPerspectives))
+let proposals = JSON.parse(JSON.stringify(seedProposals))
+let opportunities = [...seedOpportunities]
 let conversations = {} // conversationId -> { turns: number, projectId }
 let nextId = 100
 
@@ -186,9 +192,99 @@ export async function mockApplyStateChanges(projectId, changes) {
   return { message: 'Project state updated', version_number: newVersion.version_number }
 }
 
-// ---- Invitations (admin/PM only in the real backend) ----
+// ---- Admin: users & invitations ----
+export async function mockListUsers() {
+  await delay()
+  return allUsers
+}
+
+export async function mockListInvitations() {
+  await delay()
+  return invitations
+}
+
 export async function mockCreateInvitation(email, role) {
   await delay()
-  invitations[email] = { role, accepted: false }
-  return { message: 'Invitation created (mock)', invitation_id: newId('inv') }
+  const invite = { id: newId('inv'), email, role, accepted: false, created_at: new Date().toISOString() }
+  invitations = [invite, ...invitations]
+  return { message: 'Invitation created (mock)', invitation_id: invite.id }
+}
+
+export async function mockRevokeInvitation(invitationId) {
+  await delay()
+  invitations = invitations.filter((i) => i.id !== invitationId)
+  return { message: 'Invitation revoked (mock)' }
+}
+
+// ---- Project Components & Perspectives ----
+export async function mockListComponents(projectId) {
+  await delay()
+  return components[projectId] || []
+}
+
+export async function mockCreateComponent(projectId, title) {
+  await delay()
+  const component = { id: newId('c'), title, status: 'unassigned', assignees: [] }
+  components[projectId] = [...(components[projectId] || []), component]
+  return component
+}
+
+export async function mockAssignComponent(projectId, componentId, userDisplayName) {
+  await delay()
+  const list = components[projectId] || []
+  const comp = list.find((c) => c.id === componentId)
+  if (comp) {
+    const perspectiveId = newId('ps')
+    comp.assignees.push({ user_id: newId('u'), display_name: userDisplayName, perspective_id: perspectiveId })
+    comp.status = 'in_progress'
+    perspectives[componentId] = perspectives[componentId] || []
+  }
+  return comp
+}
+
+export async function mockListPerspectives(componentId) {
+  await delay()
+  return perspectives[componentId] || []
+}
+
+// ---- Change Proposals (separate review step, distinct from inline chat accept) ----
+export async function mockListProposals(projectId) {
+  await delay()
+  return proposals[projectId] || []
+}
+
+export async function mockReviewProposal(projectId, proposalId, decision) {
+  await delay()
+  const list = proposals[projectId] || []
+  const proposal = list.find((p) => p.id === proposalId)
+  if (proposal) {
+    proposal.status = decision // 'accepted' | 'rejected'
+  }
+  if (decision === 'accepted' && proposal) {
+    const current = projectStates[projectId] || { version_number: 0, state: {} }
+    const newVersion = {
+      version_number: (current.version_number || 0) + 1,
+      state: current.state,
+      change_summary: `Accepted proposal: ${proposal.what_changed} (${proposal.author})`,
+      created_at: new Date().toISOString(),
+    }
+    projectStates[projectId] = newVersion
+    history[projectId] = [
+      { version_number: newVersion.version_number, change_summary: newVersion.change_summary, created_at: newVersion.created_at },
+      ...(history[projectId] || []),
+    ]
+  }
+  return { message: `Proposal ${decision} (mock)` }
+}
+
+// ---- Opportunities (fellow marketplace) ----
+export async function mockListOpportunities() {
+  await delay()
+  return opportunities
+}
+
+export async function mockVolunteer(opportunityId) {
+  await delay()
+  opportunities = opportunities.map((o) => (o.id === opportunityId ? { ...o, volunteered: true } : o))
+  return { message: 'Volunteered (mock) — the project manager will be notified' }
 }

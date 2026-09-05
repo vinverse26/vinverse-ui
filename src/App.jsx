@@ -9,6 +9,7 @@ import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Opportunities from './pages/Opportunities'
 import Profile from './pages/Profile'
+import AdminUsers from './pages/AdminUsers'
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/projects/:projectId" element={<ProjectDetail />} />
             <Route path="/opportunities" element={<Opportunities />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/home" replace />} />

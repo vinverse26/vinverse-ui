@@ -12,6 +12,9 @@ export default function Sidebar() {
       <NavLink to="/projects" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>My Projects</NavLink>
       <NavLink to="/opportunities" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Opportunities</NavLink>
       <NavLink to="/profile" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Profile</NavLink>
+      {user?.role === 'admin' && (
+        <NavLink to="/admin/users" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Admin: Users</NavLink>
+      )}
 
       <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #1c2440' }}>
         <div style={{ fontSize: '0.8rem', color: '#8892b0', marginBottom: '0.5rem' }}>
