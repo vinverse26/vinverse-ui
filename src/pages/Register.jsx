@@ -1,51 +1,67 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import PageHero from "../components/PageHero.jsx";
+import { registerFellow } from "../api/auth.js";
 
 export default function Register() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [displayName, setDisplayName] = useState('')
-  const [error, setError] = useState('')
-  const { register } = useAuth()
-  const navigate = useNavigate()
+  const [done, setDone] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    try {
-      await register(email, password, displayName)
-      navigate('/home')
-    } catch (err) {
-      setError(err.response?.data?.detail || 'Registration failed')
-    }
+  if (done) {
+    return (
+      <>
+        <PageHero kicker="Register" title="Request received." />
+        <section className="section">
+          <div className="wrap contact-panel">
+            <p className="lede">
+              Once an admin approves your request, you will receive an email with login details.
+            </p>
+            <div className="actions" style={{ marginTop: "1.6rem" }}>
+              <Link className="btn ghost" to="/products/collective-intelligence">
+                Back to product
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-card">
-        <div className="logo">VINVERSE</div>
-        <div className="tagline">Registration is invite-only</div>
-        {error && <div className="error-text">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label>Invited email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </div>
-          <div className="field">
-            <label>Display name (optional)</label>
-            <input value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
-          </div>
-          <div className="field">
-            <label>Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          </div>
-          <button className="btn-primary" type="submit">Create account</button>
-        </form>
-        <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.85rem', color: '#8892b0' }}>
-          Already have an account? <Link to="/login">Sign in</Link>
-        </p>
-      </div>
-    </div>
-  )
+    <>
+      <PageHero
+        kicker="Register"
+        title="Request access to the platform."
+        lede="Access is invite-only. Submit your details and an admin will review the request."
+      />
+      <section className="section">
+        <div className="wrap contact-panel">
+          <form
+            className="form"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+              await registerFellow({ ...data, requestedAt: new Date().toISOString() });
+              setDone(true);
+            }}
+          >
+            <label>
+              Name
+              <input name="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required />
+            </label>
+            <label>
+              Phone number
+              <input name="phone" type="tel" required />
+            </label>
+            <button className="btn" type="submit">
+              Register
+            </button>
+          </form>
+        </div>
+      </section>
+    </>
+  );
 }

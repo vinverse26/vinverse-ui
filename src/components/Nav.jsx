@@ -6,7 +6,7 @@ const links = [
   { to: "/services", label: "Services" },
   { to: "/products", label: "Products" },
   { to: "/careers", label: "Careers" },
-  { to: "/contact", label: "Contact", cta: true },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -26,7 +26,7 @@ export default function Nav() {
             <NavLink
               key={l.to}
               to={l.to}
-              className={({ isActive }) => `${l.cta ? "nav-cta" : ""} ${isActive ? "active" : ""}`}
+              className={({ isActive }) => (isActive ? "active" : "")}
               onClick={() => setOpen(false)}
               end={l.to === "/"}
             >

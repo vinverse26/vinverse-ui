@@ -25,7 +25,7 @@ export default function Contact() {
               const data = new FormData(e.currentTarget);
               const subject = encodeURIComponent(data.get("topic") || "Vinverse inquiry");
               const body = encodeURIComponent(
-                `Name: ${data.get("name")}\nOrganization: ${data.get("org")}\n\n${data.get("message")}`
+                `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nOrganization: ${data.get("org")}\n\n${data.get("message")}`
               );
               window.location.href = `mailto:ideas@vinverse.ai?subject=${subject}&body=${body}`;
             }}
@@ -33,6 +33,10 @@ export default function Contact() {
             <label>
               Name
               <input name="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required />
             </label>
             <label>
               Organization
@@ -52,7 +56,7 @@ export default function Contact() {
               <textarea name="message" required />
             </label>
             <button className="btn" type="submit">
-              Open email to ideas@vinverse.ai
+              Send Email
             </button>
           </form>
         </div>

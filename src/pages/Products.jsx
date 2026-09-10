@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
 
 const products = [
@@ -9,25 +10,17 @@ const products = [
   },
   {
     n: "02",
+    t: "Collective Intelligence Platform",
+    s: "A decision platform for Intelligence Fellows",
+    d: "Decompose complex problems. Combine AI, domain expertise, human judgment, data, and analysis into a structured decision — not a single answer.",
+    to: "/products/collective-intelligence",
+  },
+  {
+    n: "03",
     t: "AI-Native Enterprise Platform",
     s: "An operating layer",
     d: "Workflows, agents, human + AI collaboration, enterprise integration, orchestration, monitoring, and intelligent action.",
   },
-  {
-    n: "03",
-    t: "Collective Intelligence",
-    s: "A decision platform",
-    d: "Decompose complex problems. Combine AI, domain expertise, human judgment, data, and analysis into a structured decision — not a single answer.",
-  },
-];
-
-const phases = [
-  { n: "01", t: "Discover", d: "Understand businesses and AI opportunities." },
-  { n: "02", t: "Deliver", d: "Help companies implement." },
-  { n: "03", t: "Learn", d: "See the patterns that repeat." },
-  { n: "04", t: "Productize", d: "Build around what recurs." },
-  { n: "05", t: "Platform", d: "An AI operating layer." },
-  { n: "06", t: "Scale", d: "Help organizations become AI-native." },
 ];
 
 export default function Products() {
@@ -42,32 +35,26 @@ export default function Products() {
       <section className="section">
         <div className="wrap">
           <div className="grid-3">
-            {products.map((p) => (
-              <article className="card" key={p.n}>
-                <div className="num">{p.n}</div>
-                <h3>{p.t}</h3>
-                <p className="teal">{p.s}</p>
-                <p style={{ marginTop: "0.85rem" }}>{p.d}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt">
-        <div className="wrap">
-          <div className="section-head">
-            <p className="kicker">Roadmap</p>
-            <h2>A company built in sequence — not claimed in advance.</h2>
-          </div>
-          <div className="grid-3">
-            {phases.map((p) => (
-              <article className="card" key={p.n}>
-                <div className="phase">Phase {p.n}</div>
-                <h3>{p.t}</h3>
-                <p>{p.d}</p>
-              </article>
-            ))}
+            {products.map((p) => {
+              const inner = (
+                <>
+                  <div className="num">{p.n}</div>
+                  <h3>{p.t}</h3>
+                  <p className="teal">{p.s}</p>
+                  <p style={{ marginTop: "0.85rem" }}>{p.d}</p>
+                  {p.to ? <p className="card-cta">Open product →</p> : null}
+                </>
+              );
+              return p.to ? (
+                <Link className="card card-link" to={p.to} key={p.n}>
+                  {inner}
+                </Link>
+              ) : (
+                <article className="card" key={p.n}>
+                  {inner}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
