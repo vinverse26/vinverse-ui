@@ -1,0 +1,40 @@
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services" },
+  { to: "/products", label: "Products" },
+  { to: "/careers", label: "Careers" },
+  { to: "/contact", label: "Contact", cta: true },
+];
+
+export default function Nav() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="nav">
+      <div className="wrap nav-inner">
+        <NavLink to="/" className="logo" onClick={() => setOpen(false)}>
+          Vinverse
+        </NavLink>
+        <button className="menu-btn" onClick={() => setOpen((v) => !v)} aria-label="Menu">
+          Menu
+        </button>
+        <nav className={`nav-links ${open ? "open" : ""}`}>
+          {links.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              className={({ isActive }) => `${l.cta ? "nav-cta" : ""} ${isActive ? "active" : ""}`}
+              onClick={() => setOpen(false)}
+              end={l.to === "/"}
+            >
+              {l.label}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}

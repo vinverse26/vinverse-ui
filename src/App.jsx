@@ -1,37 +1,26 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
-import AppShell from './components/AppShell'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Home from './pages/Home'
-import Chat from './pages/Chat'
-import Projects from './pages/Projects'
-import ProjectDetail from './pages/ProjectDetail'
-import Opportunities from './pages/Opportunities'
-import Profile from './pages/Profile'
-import AdminUsers from './pages/AdminUsers'
+import { Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav.jsx";
+import Footer from "./components/Footer.jsx";
+import Home from "./pages/Home.jsx";
+import Services from "./pages/Services.jsx";
+import Products from "./pages/Products.jsx";
+import Careers from "./pages/Careers.jsx";
+import Contact from "./pages/Contact.jsx";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
+    <div className="site">
+      <Nav />
+      <main>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-
-          <Route element={<AppShell />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:projectId" element={<ProjectDetail />} />
-            <Route path="/opportunities" element={<Opportunities />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-          </Route>
-
-          <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
-      </AuthProvider>
-    </BrowserRouter>
-  )
+      </main>
+      <Footer />
+    </div>
+  );
 }
