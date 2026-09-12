@@ -13,7 +13,7 @@ const products = [
     t: "Collective Intelligence Platform",
     s: "A decision platform for Intelligence Fellows",
     d: "Decompose complex problems. Combine AI, domain expertise, human judgment, data, and analysis into a structured decision — not a single answer.",
-    to: "/products/collective-intelligence",
+    to: "/login",
   },
   {
     n: "03",

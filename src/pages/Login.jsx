@@ -60,23 +60,16 @@ export default function Login() {
         <div className="wrap contact-panel">
           <div ref={googleSlot} className="google-official" />
 
-          <button
-            type="button"
-            className="google-btn"
-            disabled={busy}
-            onClick={() => finish(null)}
-          >
-            <span className="google-mark" aria-hidden="true">
-              G
-            </span>
-            {busy ? "Signing in…" : "Continue with Google"}
-          </button>
+          {!clientId ? (
+            <button type="button" className="google-btn" disabled={busy} onClick={() => finish(null)}>
+              <span className="google-mark" aria-hidden="true">
+                G
+              </span>
+              {busy ? "Signing in…" : "Continue with Google"}
+            </button>
+          ) : null}
 
           {error ? <p className="note">{error}</p> : null}
-          <p className="note">
-            UI flow is live now. The button calls <code>POST /api/auth/google</code>. Until that service exists, the
-            app uses a placeholder session and opens the platform.
-          </p>
         </div>
       </section>
     </>
