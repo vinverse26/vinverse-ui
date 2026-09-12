@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { exchangeGoogleCredential } from "../api/auth.js";
@@ -11,16 +11,19 @@ export default function Login() {
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [notRegistered, setNotRegistered] = useState(false);
 
   async function finish(credential) {
     setBusy(true);
     setError("");
+    setNotRegistered(false);
     try {
       const session = await exchangeGoogleCredential(credential);
       login(session.user, session.token);
       navigate("/platform");
     } catch (err) {
       setError(err.message || "Google sign-in failed.");
+      setNotRegistered(err.status === 403);
     } finally {
       setBusy(false);
     }
@@ -69,7 +72,17 @@ export default function Login() {
             </button>
           ) : null}
 
-          {error ? <p className="note">{error}</p> : null}
+          {error ? (
+            <p className="note">
+              {error}
+              {notRegistered ? (
+                <>
+                  {" "}
+                  <Link to="/register">Register here</Link>.
+                </>
+              ) : null}
+            </p>
+          ) : null}
         </div>
       </section>
     </>
