@@ -27,9 +27,12 @@ export default function Home() {
           <p className="quote">
             Advisory so the opportunity is clear. Implementation so it is real. Products so the company can keep operating that way.
           </p>
-          <div className="actions" style={{ marginTop: "2rem" }}>
-            <Link className="btn" to="/products">
-              Product horizons
+          <div className="actions home-cta-row">
+            <Link className="btn ghost" to="/products">
+              Products
+            </Link>
+            <Link className="btn ghost" to="/services">
+              Services
             </Link>
             <Link className="btn ghost" to="/careers">
               Join the journey

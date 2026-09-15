@@ -115,7 +115,7 @@ export default function Services() {
               Advisory, Solutions, Fractional CTO, Start-up Booster, or a mix.
             </p>
             <div className="actions" style={{ marginTop: "1.2rem" }}>
-              <Link className="btn" to="/contact">
+              <Link className="btn ghost" to="/contact">
                 Start a conversation
               </Link>
             </div>
