@@ -1040,3 +1040,39 @@ h3 {
   margin-top: 0.85rem;
   max-width: 40rem;
 }
+
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.app-brand .logo {
+  text-decoration: none;
+}
+
+.app-brand-divider {
+  width: 1px;
+  height: 1.6rem;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.app-product-name {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 720px) {
+  .app-product-name {
+    display: none;
+  }
+}

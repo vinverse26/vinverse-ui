@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { createProject, inviteFellow, sendMasterMessage } from "../api/platform.js";
 
@@ -78,9 +78,13 @@ export default function Platform() {
   return (
     <div className="app-shell">
       <header className="app-bar">
-        <div>
-          <p className="kicker">Vinverse</p>
-          <strong>Collective Intelligence</strong>
+        <div className="app-brand">
+          <Link to="/" className="logo" aria-label="Vinverse home">
+            <img src="/images/vinverse-mark.png" alt="" className="logo-mark" />
+            <span className="logo-word">Vinverse</span>
+          </Link>
+          <span className="app-brand-divider" aria-hidden="true" />
+          <span className="app-product-name">Collective Intelligence Platform</span>
         </div>
         <div className="app-user">
           <span>{user?.name || user?.email}</span>
