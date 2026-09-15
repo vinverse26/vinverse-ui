@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
 
 export default function Careers() {
@@ -20,8 +21,16 @@ export default function Careers() {
             </a>
             .
           </p>
+          <div className="actions home-cta-row" style={{ marginTop: "1.5rem" }}>
+            <Link className="btn ghost" to="/contact">
+              Start a conversation
+            </Link>
+            <Link className="btn ghost" to="/">
+              Home
+            </Link>
+          </div>
         </div>
       </section>
-</>
+    </>
   );
 }

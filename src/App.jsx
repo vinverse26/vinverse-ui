@@ -13,6 +13,7 @@ import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Platform from "./pages/Platform.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <div className="site">
+      <ScrollToTop />
       {appMode ? null : <Nav />}
       <main>
         <Routes>

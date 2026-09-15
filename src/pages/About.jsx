@@ -20,12 +20,12 @@ export default function About() {
               supports decisions across the firm, and helps the enterprise operate as AI-native.
             </p>
           </div>
-          <div className="actions" style={{ marginTop: "1.5rem" }}>
-            <Link className="btn ghost" to="/what-we-do">
-              What we do
-            </Link>
+          <div className="actions home-cta-row" style={{ marginTop: "1.5rem" }}>
             <Link className="btn ghost" to="/contact">
               Start a conversation
+            </Link>
+            <Link className="btn ghost" to="/">
+              Home
             </Link>
           </div>
         </div>

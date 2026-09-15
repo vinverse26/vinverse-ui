@@ -128,9 +128,12 @@ export default function Services() {
               Not sure which engagement fits? Start with a short discovery conversation - we'll recommend Advisory,
               Solutions, Fractional CTO, Start-up Booster, or a mix.
             </p>
-            <div className="actions" style={{ marginTop: "1.2rem" }}>
+            <div className="actions home-cta-row" style={{ marginTop: "1.2rem" }}>
               <Link className="btn ghost" to="/contact">
                 Start a conversation
+              </Link>
+              <Link className="btn ghost" to="/">
+                Home
               </Link>
             </div>
           </div>

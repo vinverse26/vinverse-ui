@@ -20,7 +20,7 @@ export default function Contact() {
           </p>
         </div>
       </PageHero>
-      <OfferBand alt={false} />
+      <OfferBand showHome />
     </>
   );
 }

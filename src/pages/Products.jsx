@@ -82,6 +82,26 @@ export default function Products() {
               );
             })}
           </div>
+
+        </div>
+      </section>
+
+      <section className="section section-compact">
+        <div className="wrap">
+          <div className="section-head">
+            <p className="lede">
+              Let's talk about the problems and opportunities you see in the business - and how these products, or our
+              services, can create value there.
+            </p>
+            <div className="actions home-cta-row" style={{ marginTop: "1.2rem" }}>
+              <Link className="btn ghost" to="/contact">
+                Start a conversation
+              </Link>
+              <Link className="btn ghost" to="/">
+                Home
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

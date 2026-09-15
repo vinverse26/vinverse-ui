@@ -14,8 +14,6 @@ const pillars = [
       { label: "Fractional CTO", to: "/services?service=fractional-cto" },
       { label: "Start-up Booster", to: "/services?service=startup-booster" },
     ],
-    to: "/services",
-    cta: "View services",
   },
   {
     id: "products",
@@ -27,8 +25,6 @@ const pillars = [
       { label: "Collective Intelligence Platform", to: "/products#collective-intelligence" },
       { label: "AI-Native Enterprise Platform", to: "/products#ai-native-enterprise" },
     ],
-    to: "/products",
-    cta: "View products",
   },
 ];
 
@@ -83,11 +79,6 @@ export default function WhatWeDo() {
             </nav>
           </div>
 
-          <div className="actions" style={{ marginTop: "1.5rem" }}>
-            <Link className="btn ghost" to={active.to}>
-              {active.cta}
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -98,9 +89,12 @@ export default function WhatWeDo() {
               Services create the path. Products make it durable. If you are not sure which door to use, start with a
               short conversation.
             </p>
-            <div className="actions" style={{ marginTop: "1.2rem" }}>
+            <div className="actions home-cta-row" style={{ marginTop: "1.2rem" }}>
               <Link className="btn ghost" to="/contact">
                 Start a conversation
+              </Link>
+              <Link className="btn ghost" to="/">
+                Home
               </Link>
             </div>
           </div>
