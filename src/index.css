@@ -1104,3 +1104,21 @@ h3 {
 .home-cta-row > .btn:last-child {
   margin-bottom: 0.75rem;
 }
+
+
+.offer-band {
+  max-width: 40rem;
+  width: 100%;
+  margin-inline: 0;
+  margin-right: auto;
+}
+
+.offer-band .quote {
+  max-width: none;
+  text-align: left;
+}
+
+.offer-band .home-cta-row {
+  margin-top: 1.5rem;
+  justify-content: flex-start;
+}

@@ -1,4 +1,5 @@
 import PageHero from "../components/PageHero.jsx";
+import OfferBand from "../components/OfferBand.jsx";
 
 export default function Careers() {
   return (
@@ -8,11 +9,11 @@ export default function Careers() {
         kicker="Careers"
         title="Build the firm that helps organizations become AI-native."
       />
-      <section className="section">
+      <section className="section section-compact">
         <div className="wrap career-panel">
           <p className="lede">
             We are looking for domain experts from every industry and sector to join an early Intelligence Fellow
-            network — and be part of this journey.
+            network - and be part of this journey.
           </p>
           <p className="lede" style={{ marginTop: "1.1rem" }}>
             If that sounds like you, write to{" "}
@@ -23,6 +24,7 @@ export default function Careers() {
           </p>
         </div>
       </section>
+      <OfferBand />
     </>
   );
 }

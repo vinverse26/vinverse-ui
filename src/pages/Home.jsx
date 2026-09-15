@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import OfferBand from "../components/OfferBand.jsx";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         <div className="wrap hero-content">
           <h1>Building the intelligence layer for the next generation of organizations.</h1>
           <p className="lede">
-            We help businesses, public institutions, and communities harness AI and collective human expertise —
+            We help businesses, public institutions, and communities harness AI and collective human expertise -
             so every organization can access the intelligence it needs to thrive.
           </p>
           <div className="actions">
@@ -22,24 +23,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section alt">
-        <div className="wrap">
-          <p className="quote">
-            Advisory so the opportunity is clear. Implementation so it is real. Products so the company can keep operating that way.
-          </p>
-          <div className="actions home-cta-row">
-            <Link className="btn ghost" to="/products">
-              Products
-            </Link>
-            <Link className="btn ghost" to="/services">
-              Services
-            </Link>
-            <Link className="btn ghost" to="/careers">
-              Join the journey
-            </Link>
-          </div>
-        </div>
-      </section>
+      <OfferBand />
     </>
   );
 }

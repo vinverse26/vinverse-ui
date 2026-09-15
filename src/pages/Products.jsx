@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
+import OfferBand from "../components/OfferBand.jsx";
 
 const products = [
   {
@@ -59,13 +60,7 @@ export default function Products() {
         </div>
       </section>
 
-      <section className="section section-compact alt">
-        <div className="wrap">
-          <p className="quote">
-            Advisory so the opportunity is clear. Implementation so it is real. Products so the company can keep operating that way.
-          </p>
-        </div>
-      </section>
+      <OfferBand />
     </>
   );
 }

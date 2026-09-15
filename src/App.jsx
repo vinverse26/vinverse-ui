@@ -6,6 +6,7 @@ import WhatWeDo from "./pages/WhatWeDo.jsx";
 import Services from "./pages/Services.jsx";
 import Products from "./pages/Products.jsx";
 import Careers from "./pages/Careers.jsx";
+import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import CollectiveIntelligence from "./pages/CollectiveIntelligence.jsx";
 import Register from "./pages/Register.jsx";
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/collective-intelligence" element={<CollectiveIntelligence />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

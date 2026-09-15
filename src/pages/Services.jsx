@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
+import OfferBand from "../components/OfferBand.jsx";
 
 const services = [
   {
     id: "advisory",
     label: "Advisory",
-    title: "Become AI-native — with a clear path, not a pile of tools.",
+    title: "Become AI-native - with a clear path, not a pile of tools.",
     body: "We help leadership teams see where AI creates real value, what to leave human, and how to move from experiments to an operating model that sticks.",
     items: [
       "AI opportunity assessment and use-case discovery",
@@ -20,7 +21,7 @@ const services = [
     id: "solutions",
     label: "Solutions",
     title: "Design, build, and implement AI that works in the business.",
-    body: "We deliver high-quality product and engineering — from workflow tools to full applications — and stay technology-agnostic so you get the best fit, not a forced stack.",
+    body: "We deliver high-quality product and engineering - from workflow tools to full applications - and stay technology-agnostic so you get the best fit, not a forced stack.",
     items: [
       "Product design and UX for AI-powered experiences",
       "Custom development and system integration",
@@ -33,13 +34,13 @@ const services = [
     id: "fractional-cto",
     label: "Fractional CTO",
     title: "Senior technical leadership, when and as you need it.",
-    body: "We act as your CTO bench — architecture, hiring guidance, vendor choices, roadmap, and delivery oversight — without a full-time hire until you’re ready.",
+    body: "We act as your CTO bench - architecture, hiring guidance, vendor choices, roadmap, and delivery oversight - without a full-time hire until you're ready.",
     items: [
       "Technical strategy and architecture decisions",
       "Product and engineering roadmap",
       "Team structure, hiring, and vendor selection",
       "Delivery oversight and risk management on critical builds",
-      "End-to-end product development — from the screens people use to the systems that run behind them",
+      "End-to-end product development - from the screens people use to the systems that run behind them",
     ],
     gridClass: "grid-3",
   },
@@ -47,7 +48,7 @@ const services = [
     id: "startup-booster",
     label: "Start-up Booster",
     title: "You own the idea. We own design through delivery.",
-    body: "For inventors and founders who want to stay focused on the problem and the market. We take product and technology end to end — proof of concept to enterprise-grade — so you are not assembling a full tech org before you need one.",
+    body: "For inventors and founders who want to stay focused on the problem and the market. We take product and technology end to end - proof of concept to enterprise-grade - so you are not assembling a full tech org before you need one.",
     items: [
       "Product design and proof-of-concept validation",
       "Full-stack web applications (front to back)",
@@ -107,12 +108,12 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section alt">
+      <section className="section section-compact">
         <div className="wrap">
           <div className="section-head">
             <p className="lede">
-              Not sure which engagement fits? Start with a short discovery conversation — we’ll recommend
-              Advisory, Solutions, Fractional CTO, Start-up Booster, or a mix.
+              Not sure which engagement fits? Start with a short discovery conversation - we'll recommend Advisory,
+              Solutions, Fractional CTO, Start-up Booster, or a mix.
             </p>
             <div className="actions" style={{ marginTop: "1.2rem" }}>
               <Link className="btn ghost" to="/contact">
@@ -122,6 +123,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      <OfferBand />
     </>
   );
 }

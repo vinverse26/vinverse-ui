@@ -1,4 +1,5 @@
 import PageHero from "../components/PageHero.jsx";
+import OfferBand from "../components/OfferBand.jsx";
 
 export default function Contact() {
   return (
@@ -19,6 +20,7 @@ export default function Contact() {
           </p>
         </div>
       </PageHero>
+      <OfferBand alt={false} />
     </>
   );
 }
