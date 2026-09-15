@@ -1,26 +1,25 @@
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
-import OfferBand from "../components/OfferBand.jsx";
 
 const products = [
   {
     n: "01",
     t: "Organizational Intelligence",
-    s: "A world model of the firm",
-    d: "Move from AI that knows documents toward AI that understands the business - structure, processes, decisions, information, and how the organization changes over time.",
+    s: "From answers to intelligent decisions.",
+    d: "Most AI replies to a prompt. This layer gives leaders - and the rest of the firm - decision support with business acumen: what is happening, what it means, and what to do.",
   },
   {
     n: "02",
     t: "Collective Intelligence Platform",
-    s: "A decision platform for Intelligence Fellows",
-    d: "Decompose complex problems. Combine AI, domain expertise, human judgment, data, and analysis into a structured decision - not a single answer.",
+    s: "A decision platform for Intelligence Fellows.",
+    d: "Hard problems are split across the right expertise - human and machine - then brought back as a structured decision the organization can stand behind.",
     to: "/login",
   },
   {
     n: "03",
     t: "AI-Native Enterprise Platform",
-    s: "An operating layer",
-    d: "Workflows, agents, human + AI collaboration, enterprise integration, orchestration, monitoring, and intelligent action.",
+    s: "The business, at your fingertips.",
+    d: "Run the company as a single, intelligible system - visible, responsive, and close at hand - rather than as a stack of tools only specialists can operate.",
   },
 ];
 
@@ -59,8 +58,6 @@ export default function Products() {
           </div>
         </div>
       </section>
-
-      <OfferBand />
     </>
   );
 }

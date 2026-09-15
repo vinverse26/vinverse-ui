@@ -1,5 +1,4 @@
 import PageHero from "../components/PageHero.jsx";
-import OfferBand from "../components/OfferBand.jsx";
 
 export default function Careers() {
   return (
@@ -12,11 +11,10 @@ export default function Careers() {
       <section className="section section-compact">
         <div className="wrap career-panel">
           <p className="lede">
-            We are looking for domain experts from every industry and sector to join an early Intelligence Fellow
-            network - and be part of this journey.
+            If you know an industry or a function deeply and want to put that knowledge to work on real AI problems, we want to hear from you.
           </p>
           <p className="lede" style={{ marginTop: "1.1rem" }}>
-            If that sounds like you, write to{" "}
+            If you want to be part of the early team, write to{" "}
             <a className="mail" href="mailto:careers@vinverse.ai">
               careers@vinverse.ai
             </a>
@@ -24,7 +22,6 @@ export default function Careers() {
           </p>
         </div>
       </section>
-      <OfferBand />
-    </>
+</>
   );
 }

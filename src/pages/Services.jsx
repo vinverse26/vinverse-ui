@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
-import OfferBand from "../components/OfferBand.jsx";
 
 const services = [
   {
     id: "advisory",
     label: "Advisory",
-    title: "Become AI-native - with a clear path, not a pile of tools.",
-    body: "We help leadership teams see where AI creates real value, what to leave human, and how to move from experiments to an operating model that sticks.",
+    title: "Unlock the value an AI-native company can create.",
+    body: "We help leadership see where AI belongs, what should stay human, and how to move from experiments to an operating model that holds - a path, not a pile of tools.",
     items: [
       "AI opportunity assessment and use-case discovery",
       "Transformation roadmap toward an AI-native enterprise",
@@ -20,8 +19,8 @@ const services = [
   {
     id: "solutions",
     label: "Solutions",
-    title: "Design, build, and implement AI that works in the business.",
-    body: "We deliver high-quality product and engineering - from workflow tools to full applications - and stay technology-agnostic so you get the best fit, not a forced stack.",
+    title: "Design, build, and put AI into the work of the firm.",
+    body: "From workflow tools to full applications - product, engineering, and integration, with no forced stack. You get the fit that serves the business.",
     items: [
       "Product design and UX for AI-powered experiences",
       "Custom development and system integration",
@@ -47,8 +46,8 @@ const services = [
   {
     id: "startup-booster",
     label: "Start-up Booster",
-    title: "You own the idea. We own design through delivery.",
-    body: "For inventors and founders who want to stay focused on the problem and the market. We take product and technology end to end - proof of concept to enterprise-grade - so you are not assembling a full tech org before you need one.",
+    title: "You own the company. We help you build it.",
+    body: "You stay on the idea and the market. We take product and technology from proof of concept to something you can run - without standing up a full tech org first.",
     items: [
       "Product design and proof-of-concept validation",
       "Full-stack web applications (front to back)",
@@ -68,8 +67,8 @@ export default function Services() {
       <PageHero
         className="page-hero-compact"
         kicker="Services"
-        title="Unlock the value an AI-native company can create"
-        lede="We help you see where AI can transform the business - and we walk the full journey with you, from the first decision to an operating model that works."
+        title="The engagement that matches the job: advice, build, leadership, or all three."
+        lede="We help companies see where AI should transform the business, implement what follows, step in as technical leadership, and take products from idea to production when you do not yet want a full tech organization."
       />
 
       <div className="service-switcher">
@@ -123,8 +122,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
-      <OfferBand />
-    </>
+</>
   );
 }

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
-import OfferBand from "../components/OfferBand.jsx";
 
 const pillars = [
   {
@@ -84,7 +83,6 @@ export default function WhatWeDo() {
           </div>
         </div>
       </section>
-      <OfferBand />
-    </>
+</>
   );
 }
