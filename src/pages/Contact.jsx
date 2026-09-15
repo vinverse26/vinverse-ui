@@ -7,7 +7,7 @@ export default function Contact() {
         className="page-hero-compact auth-hero"
         kicker="Contact"
         title="Tell us the problem worth solving."
-        lede="Whether you are exploring AI for your organization, building complementary technology, or thinking with us - start here."
+        lede="Companies, founders, and Fellows all start the same way: an ambitious goal, and a short conversation."
       >
         <div className="contact-panel auth-form">
           <p className="lede">
