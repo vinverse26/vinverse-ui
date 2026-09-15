@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
 
 const services = [
@@ -58,9 +58,23 @@ const services = [
   },
 ];
 
+function resolveServiceId(value) {
+  return services.some((s) => s.id === value) ? value : services[0].id;
+}
+
 export default function Services() {
-  const [activeId, setActiveId] = useState(services[0].id);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeId, setActiveId] = useState(() => resolveServiceId(searchParams.get("service")));
   const active = services.find((s) => s.id === activeId) || services[0];
+
+  useEffect(() => {
+    setActiveId(resolveServiceId(searchParams.get("service")));
+  }, [searchParams]);
+
+  function selectService(id) {
+    setActiveId(id);
+    setSearchParams({ service: id }, { replace: true });
+  }
 
   return (
     <>
@@ -80,7 +94,7 @@ export default function Services() {
                 type="button"
                 className={s.id === activeId ? "service-tab active" : "service-tab"}
                 aria-pressed={s.id === activeId}
-                onClick={() => setActiveId(s.id)}
+                onClick={() => selectService(s.id)}
               >
                 {s.label}
               </button>
@@ -122,6 +136,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-</>
+    </>
   );
 }

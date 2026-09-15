@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import PageHero from "../components/PageHero.jsx";
 
 const products = [
   {
+    id: "organizational-intelligence",
     n: "01",
     t: "Organizational Intelligence",
     s: "From answers to intelligent decisions.",
     d: "Most AI replies to a prompt. This layer gives leaders - and the rest of the firm - decision support with business acumen: what is happening, what it means, and what to do.",
   },
   {
+    id: "collective-intelligence",
     n: "02",
     t: "Collective Intelligence Platform",
     s: "A decision platform for Intelligence Fellows.",
@@ -16,6 +19,7 @@ const products = [
     to: "/login",
   },
   {
+    id: "ai-native-enterprise",
     n: "03",
     t: "AI-Native Enterprise Platform",
     s: "The business, at your fingertips.",
@@ -24,6 +28,18 @@ const products = [
 ];
 
 export default function Products() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const id = location.hash.replace(/^#/, "");
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [location.hash]);
+
+  const activeId = location.hash.replace(/^#/, "");
+
   return (
     <>
       <PageHero
@@ -36,6 +52,15 @@ export default function Products() {
         <div className="wrap">
           <div className="grid-3">
             {products.map((p) => {
+              const highlighted = p.id === activeId;
+              const className = [
+                "card",
+                p.to ? "card-link" : "",
+                highlighted ? "card-target" : "",
+              ]
+                .filter(Boolean)
+                .join(" ");
+
               const inner = (
                 <>
                   <div className="num">{p.n}</div>
@@ -45,12 +70,13 @@ export default function Products() {
                   {p.to ? <p className="card-cta">Open product</p> : null}
                 </>
               );
+
               return p.to ? (
-                <Link className="card card-link" to={p.to} key={p.n}>
+                <Link className={className} to={p.to} key={p.id} id={p.id}>
                   {inner}
                 </Link>
               ) : (
-                <article className="card" key={p.n}>
+                <article className={className} key={p.id} id={p.id}>
                   {inner}
                 </article>
               );

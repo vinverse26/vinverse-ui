@@ -1116,3 +1116,73 @@ h3 {
   margin-top: 1.5rem;
   justify-content: flex-start;
 }
+
+a.what-chip {
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+a.what-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+
+.card-target {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
+}
+
+a.service-tab {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 28rem;
+  margin: 0;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.pillar-bar-segment {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--gold-soft);
+  padding: 0.7rem 1.1rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pillar-bar-segment + .pillar-bar-segment {
+  border-left: 1px solid var(--gold);
+}
+
+.pillar-bar-segment:hover {
+  color: var(--navy);
+  background: rgba(212, 175, 55, 0.35);
+}
+
+.pillar-bar-segment.active {
+  color: var(--navy);
+  background: var(--gold);
+}
+
+.pillar-switcher {
+  display: flex;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: 1.35rem 0 1.5rem;
+}
+
+
