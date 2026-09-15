@@ -15,8 +15,9 @@ export default function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <NavLink to="/" className="logo" onClick={() => setOpen(false)}>
-          Vinverse
+        <NavLink to="/" className="logo" onClick={() => setOpen(false)} aria-label="Vinverse home">
+          <img src="/images/vinverse-mark.png" alt="" className="logo-mark" />
+          <span className="logo-word">Vinverse</span>
         </NavLink>
         <button className="menu-btn" onClick={() => setOpen((v) => !v)} aria-label="Menu">
           Menu

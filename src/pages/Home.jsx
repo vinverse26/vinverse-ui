@@ -12,7 +12,7 @@ export default function Home() {
             so every organization can access the intelligence it needs to thrive.
           </p>
           <div className="actions">
-            <Link className="btn" to="/services">
+            <Link className="btn" to="/what-we-do">
               What we do
             </Link>
             <Link className="btn ghost" to="/contact">
@@ -25,8 +25,7 @@ export default function Home() {
       <section className="section alt">
         <div className="wrap">
           <p className="quote">
-            Today we help companies understand AI. Tomorrow we help them implement it. Next, operate with it.
-            Ultimately, become AI-native.
+            Advisory so the opportunity is clear. Implementation so it is real. Products so the company can keep operating that way.
           </p>
           <div className="actions" style={{ marginTop: "2rem" }}>
             <Link className="btn" to="/products">

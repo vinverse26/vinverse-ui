@@ -4,6 +4,7 @@ export default function Careers() {
   return (
     <>
       <PageHero
+        className="page-hero-compact"
         kicker="Careers"
         title="Build the firm that helps organizations become AI-native."
       />

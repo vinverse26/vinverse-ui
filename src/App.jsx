@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
+import WhatWeDo from "./pages/WhatWeDo.jsx";
 import Services from "./pages/Services.jsx";
 import Products from "./pages/Products.jsx";
 import Careers from "./pages/Careers.jsx";
@@ -22,6 +23,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/what-we-do" element={<WhatWeDo />} />
           <Route path="/services" element={<Services />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/collective-intelligence" element={<CollectiveIntelligence />} />
