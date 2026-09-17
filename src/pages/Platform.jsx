@@ -148,7 +148,9 @@ export default function Platform() {
             ["chat", "Master consultant"],
             ["projects", "Projects"],
             ["fellows", "Fellows"],
-            ["requests", "Access requests"],
+            // Admin-only on the backend (ADMIN_EMAILS) -- hidden here too so
+            // a non-admin Fellow doesn't see a tab that just 403s.
+            ...(user?.isAdmin ? [["requests", "Access requests"]] : []),
             ["profile", "Profile"],
           ].map(([id, label]) => (
             <button key={id} className={tab === id ? "on" : ""} type="button" onClick={() => setTab(id)}>
