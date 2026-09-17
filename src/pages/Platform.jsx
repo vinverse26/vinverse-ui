@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { createProject, inviteFellow, sendMasterMessage } from "../api/platform.js";
+import { approveRegistration, listRegistrations, rejectRegistration } from "../api/auth.js";
 
 const starterProjects = [
   {
@@ -38,6 +39,46 @@ export default function Platform() {
   });
 
   const active = useMemo(() => projects.find((p) => p.id === activeId), [projects, activeId]);
+
+  const [registrations, setRegistrations] = useState([]);
+  const [requestsLoading, setRequestsLoading] = useState(false);
+  const [requestsError, setRequestsError] = useState("");
+  const [actionBusyId, setActionBusyId] = useState(null);
+
+  useEffect(() => {
+    if (tab !== "requests") return undefined;
+    let cancelled = false;
+    setRequestsLoading(true);
+    setRequestsError("");
+    listRegistrations()
+      .then((res) => {
+        if (!cancelled) setRegistrations(res.registrations || []);
+      })
+      .catch((err) => {
+        if (!cancelled) setRequestsError(err.message || "Could not load requests.");
+      })
+      .finally(() => {
+        if (!cancelled) setRequestsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [tab]);
+
+  async function decideRegistration(id, action) {
+    setActionBusyId(id);
+    setRequestsError("");
+    try {
+      const fn = action === "approve" ? approveRegistration : rejectRegistration;
+      const res = await fn(id);
+      const nextStatus = res.registration?.status || (action === "approve" ? "approved" : "rejected");
+      setRegistrations((list) => list.map((r) => (r.id === id ? { ...r, status: nextStatus } : r)));
+    } catch (err) {
+      setRequestsError(err.message || "Could not update that request.");
+    } finally {
+      setActionBusyId(null);
+    }
+  }
 
   async function send() {
     const text = draft.trim();
@@ -107,6 +148,7 @@ export default function Platform() {
             ["chat", "Master consultant"],
             ["projects", "Projects"],
             ["fellows", "Fellows"],
+            ["requests", "Access requests"],
             ["profile", "Profile"],
           ].map(([id, label]) => (
             <button key={id} className={tab === id ? "on" : ""} type="button" onClick={() => setTab(id)}>
@@ -250,6 +292,56 @@ export default function Platform() {
                   </article>
                 ))}
               </div>
+            </div>
+          )}
+
+          {tab === "requests" && (
+            <div>
+              <h2>Access requests</h2>
+              <p className="lede">
+                Approving a request adds that email to the sign-in allow-list right away — no redeploy needed.
+              </p>
+
+              {requestsError ? <p className="auth-note auth-note-alert" style={{ marginTop: "1rem" }}>{requestsError}</p> : null}
+
+              {requestsLoading ? (
+                <p className="auth-note" style={{ marginTop: "1rem" }}>Loading…</p>
+              ) : registrations.length === 0 ? (
+                <p className="auth-note" style={{ marginTop: "1rem" }}>No requests yet.</p>
+              ) : (
+                <div className="grid-3" style={{ marginTop: "1.2rem" }}>
+                  {registrations.map((r) => (
+                    <article className="card" key={r.id}>
+                      <h3>{r.name || r.email}</h3>
+                      <p>{r.email}</p>
+                      {r.phone ? <p>{r.phone}</p> : null}
+                      <p className="chip" style={{ display: "inline-block", marginTop: "0.6rem" }}>
+                        {r.status}
+                      </p>
+                      {r.status === "pending" ? (
+                        <div className="actions" style={{ marginTop: "0.9rem" }}>
+                          <button
+                            className="btn"
+                            type="button"
+                            disabled={actionBusyId === r.id}
+                            onClick={() => decideRegistration(r.id, "approve")}
+                          >
+                            {actionBusyId === r.id ? "Working…" : "Approve"}
+                          </button>
+                          <button
+                            className="btn ghost"
+                            type="button"
+                            disabled={actionBusyId === r.id}
+                            onClick={() => decideRegistration(r.id, "reject")}
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
