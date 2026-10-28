@@ -43,7 +43,7 @@ export default function Login() {
     try {
       const session = await exchangeGoogleCredential(credential);
       login(session.user, session.token);
-      navigate("/platform");
+      navigate("/platform/chat");
     } catch (err) {
       setError(err.message || "Google sign-in failed.");
       setNotRegistered(err.status === 403);
