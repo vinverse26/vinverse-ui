@@ -41,8 +41,27 @@ Until your Python auth service exists, `VITE_USE_MOCK_API=true` returns a mock s
 | Register | `POST /api/auth/register` |
 | Google login | `POST /api/auth/google` |
 | Logout | `POST /api/auth/logout` |
+| List access requests | `GET /api/auth/register` |
+| Approve access request | `POST /api/auth/register/{id}/approve` |
+| Reject access request | `POST /api/auth/register/{id}/reject` |
 | Master chat | `POST /api/orchestrator/chat` |
 | Create project | `POST /api/projects` |
 | Invite fellow | `POST /api/projects/invite` |
 
 Files: `src/api/client.js`, `src/api/auth.js`, `src/api/platform.js`.
+
+## Register and access-request review
+
+`/register` (`src/pages/Register.jsx`) is a real form now — name, email,
+phone — that posts to `POST /api/auth/register` on the backend
+(`vinverse-mcp`). It used to just show a "email us" message; the backend
+call (`registerFellow` in `src/api/auth.js`) already existed but was never
+wired to the page.
+
+Any already-approved, signed-in Fellow can review the queue from
+**Platform → Access requests**: it lists everyone who has requested access
+(`GET /api/auth/register`) and lets you Approve or Reject each one
+(`POST /api/auth/register/{id}/approve|reject`). Approving adds that email
+to the live Google Sign-In allow-list immediately — no redeploy on the
+backend side. There's no separate admin role yet, so this tab is visible to
+any signed-in Fellow.

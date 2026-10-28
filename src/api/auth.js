@@ -53,3 +53,26 @@ export async function logoutSession() {
   await api.request("/auth/logout", { method: "POST" });
   return { ok: true };
 }
+
+// --- Registration review, for an already-approved Fellow ---
+// Backed by GET/POST /api/auth/register(/{id}/approve|reject) on the MCP
+// server (see vinverse-mcp/storage.py) -- approving adds the email to the
+// live Google Sign-In allow-list immediately, no redeploy needed.
+
+export async function listRegistrations() {
+  const remote = await api.request("/auth/register");
+  if (remote) return remote;
+  return { registrations: [] };
+}
+
+export async function approveRegistration(id) {
+  const remote = await api.request(`/auth/register/${id}/approve`, { method: "POST" });
+  if (remote) return remote;
+  return { status: "approved", registration: { id, status: "approved" } };
+}
+
+export async function rejectRegistration(id) {
+  const remote = await api.request(`/auth/register/${id}/reject`, { method: "POST" });
+  if (remote) return remote;
+  return { status: "rejected", registration: { id, status: "rejected" } };
+}
